@@ -1,12 +1,12 @@
-import java.text.SimpleDateFormat
+plugins {
+    id 'com.android.library'
+}
 
-//
-// build.gradle in FtcRobotController
-//
-apply plugin: 'com.android.library'
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 android {
-
     defaultConfig {
         minSdkVersion 24
         //noinspection ExpiredTargetSdkVersion
