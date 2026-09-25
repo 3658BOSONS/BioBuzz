@@ -1,12 +1,9 @@
 package org.firstinspires.ftc.teamcode
 
-import org.firstinspires.ftc.teamcode.org.firstinspires.ftc.teamcode.drive.Drivetrain
-
 import com.qualcomm.robotcore.hardware.Gamepad
-
-import dev.nextftc.robot.*
-import dev.nextftc.robot.drive.*
-
+import dev.nextftc.robot.NextRobot
+import dev.nextftc.robot.drive.mecanumDrive
+import org.firstinspires.ftc.teamcode.org.firstinspires.ftc.teamcode.drive.Drivetrain
 
 class BuckoBee : NextRobot {
 	val driveTrain: Drivetrain = Drivetrain()
@@ -21,5 +18,5 @@ class BuckoBee : NextRobot {
 		).schedule()
 	}
 	
-	override val mechanisms = setOf(this.driveTrain);
+	override val mechanisms = setOf(this.driveTrain); \
 }
