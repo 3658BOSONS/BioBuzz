@@ -6,6 +6,7 @@ import com.pedropathing.revhub.localizers.PinpointLocalizer
 import com.pedropathing.revhub.localizers.ThreeWheelLocalizer
 import com.pedropathing.tuning.autotune.*
 import org.firstinspires.ftc.teamcode.pedro.procedures.ForesightTuner
+import org.firstinspires.ftc.teamcode.pedro.procedures.Tests
 
 
 object Tuning {
@@ -26,11 +27,13 @@ object Tuning {
 		}, { hardwareMap -> Mecanum(hardwareMap, Constants.driveConfig) })
 	}
 	
+	@JvmStatic
 	@Tuner
 	fun tests(): Procedure {
 		return Tests(
-			{ hardwareMap -> Mecanum(hardwareMap, Constants.drivetrainConfig) },
-			({ hardwareMap -> PinpointLocalizer(hardwareMap, Constants.localizerConfig) }),
-			{ Foresight(Constants.foresightConfig) })
+			{ hardwareMap -> Mecanum(hardwareMap, Constants.driveConfig) },
+			({ hardwareMap -> ThreeWheelLocalizer(hardwareMap, Constants.localizerConfig) }),
+			{ Foresight(Constants.foresightConfig) },
+		);
 	}
 }

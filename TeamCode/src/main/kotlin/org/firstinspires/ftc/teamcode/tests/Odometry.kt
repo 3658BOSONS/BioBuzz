@@ -3,13 +3,13 @@ package org.firstinspires.ftc.teamcode.tests
 import android.util.Log
 import com.qualcomm.hardware.lynx.LynxModule
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp
+import com.qualcomm.robotcore.eventloop.opmode.Utility
 import com.qualcomm.robotcore.hardware.DcMotor
 import com.qualcomm.robotcore.hardware.DcMotorEx
 import kotlin.math.PI
 import kotlin.math.abs
 
-@TeleOp(name = "Manual Three Wheel Tuner", group = "Calibration")
+@Utility(name = "Manual Three Wheel Tuner")
 class ManualThreeWheelTuner : LinearOpMode() {
 	
 	companion object {

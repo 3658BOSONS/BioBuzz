@@ -10,6 +10,8 @@ class Outtake : Mechanism {
 	val flippy = NextServo("flippy")
 	val grippy = NextServo("grippy")
 	
+	val spinny = NextMotor("spinny")
+	
 	fun up(): Command = instant {
 		this.flippy.position = 0.5
 	}
@@ -24,5 +26,13 @@ class Outtake : Mechanism {
 	
 	fun drop(): Command = instant {
 		this.grippy.position = 0.0
+	}
+	
+	fun spin(powerSupplier: () -> Double): Command = infinite {
+		this.spinny.throttle = powerSupplier()
+	}
+	
+	fun stop(): Command = instant {
+		this.spinny.throttle = 0.0;
 	}
 }

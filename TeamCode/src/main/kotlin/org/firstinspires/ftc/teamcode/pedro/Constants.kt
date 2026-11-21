@@ -17,24 +17,24 @@ import com.qualcomm.robotcore.hardware.HardwareMap
 
 
 object Constants {
-	var localizerConfig: ThreeWheelConfig = ThreeWheelConfig(Configuration { c: ThreeWheelConfig? ->
-		c!!.leftEncoderName.set("frontLeftMotor")
+	var localizerConfig: ThreeWheelConfig = ThreeWheelConfig(Configuration { c: ThreeWheelConfig ->
+		c.leftEncoderName.set("frontLeftMotor")
 		c.rightEncoderName.set("backRightMotor")
 		c.strafeEncoderName.set("frontRightMotor")
-		c.leftPodY.set(6.439672650322374)
-		c.rightPodY.set(-4.809404598477303)
-		c.strafePodX.set(-6.69296768957344)
-		c.forwardTicksToInches.set(7.153125886953374E-4)
-		c.strafeTicksToInches.set(7.39565197294424E-4)
-		c.turnTicksToRadians.set(6.358855689889268E-5)
+		c.leftPodY.set(6.2787)
+		c.rightPodY.set(-5.4827)
+		c.strafePodX.set(-7.0814)
+		c.forwardTicksToInches.set(0.000733)
+		c.strafeTicksToInches.set(0.000730)
+		c.turnTicksToRadians.set(0.000062)
 		c.leftEncoderDirection.set(Encoder.REVERSE)
 		c.rightEncoderDirection.set(Encoder.REVERSE)
 		c.strafeEncoderDirection.set(Encoder.FORWARD)
 	})
 	
 	var driveConfig = MecanumConfig(
-		Configuration { c: MecanumConfig? ->
-			c!!.frontLeftName.set("frontLeftMotor")
+		Configuration { c: MecanumConfig ->
+			c.frontLeftName.set("frontLeftMotor")
 			c.backLeftName.set("backLeftMotor")
 			c.frontRightName.set("frontRightMotor")
 			c.backRightName.set("backRightMotor")
@@ -46,13 +46,13 @@ object Constants {
 	)
 	
 	var foresightConfig: ForesightConfig = ForesightConfig(
-		Configuration { c: ForesightConfig? ->
-			val primaryTranslationalForward = Controller.proportional(0.7373320197332774)
-			val secondaryTranslationalForward = Controller.proportional(0.2724244794170242)
-			val primaryTranslationalLateral = Controller.proportional(2.081594286977066)
-			val secondaryTranslationalLateral = Controller.proportional(0.7690934678142872)
+		Configuration { c: ForesightConfig ->
+			val primaryTranslationalForward = Controller.proportional(0.8093316321020193)
+			val secondaryTranslationalForward = Controller.proportional(0.29902641232219945)
+			val primaryTranslationalLateral = Controller.proportional(3.300377230088197)
+			val secondaryTranslationalLateral = Controller.proportional(1.2194011988138247)
 			
-			c!!.forwardTranslational.set(
+			c.forwardTranslational.set(
 				Controller.piecewise(secondaryTranslationalForward)
 					.put(2.5, primaryTranslationalForward)
 			)
@@ -61,33 +61,33 @@ object Constants {
 					.put(2.5, primaryTranslationalLateral)
 			)
 			
-			c.coast.set(Controller.proportionalFeedforward(0.01976682344540139))
-			c.brake.set(Controller.proportionalFeedforward(0.01680179992859118))
+			c.coast.set(Controller.proportionalFeedforward(0.0207247585812958))
+			c.brake.set(Controller.proportionalFeedforward(0.017616044794101428))
 			
-			c.headingFeedback.set(Controller.proportional(259.4832033586185))
+			c.headingFeedback.set(Controller.proportional(280.6667463068479))
 			c.headingBrakeCoefficients.set(
 				Vector2D.cartesian(
-					0.26670791051386833,
-					-0.044211625536312
+					0.26207688808117385,
+					-0.05209206292753153
 				)
 			)
 			
-			c.linearBrakeCoefficients.set(Matrix.diag(0.12372403837275424, 0.0228849393346195))
+			c.linearBrakeCoefficients.set(Matrix.diag(0.07675878817449143, 0.043490226287056635))
 			c.quadraticBrakeCoefficients.set(
 				Matrix.diag(
-					0.003597492349658888,
-					-2.000722002636723E-4
+					0.0039520303093595124,
+					-7.317014613611766E-4
 				)
 			)
 			
-			c.maxAchievableForwardVelocity.set(23.938199804424368)
-			c.maxAchievableStrafeVelocity.set(48.925921930677575)
-			c.naturalForwardDeceleration.set(29.37502362171604)
-			c.naturalStrafeDeceleration.set(48.58305955217726)
+			c.maxAchievableForwardVelocity.set(42.17292512445461)
+			c.maxAchievableStrafeVelocity.set(35.128650753919516)
+			c.naturalForwardDeceleration.set(39.00833891943502)
+			c.naturalStrafeDeceleration.set(50.78907689967295)
 		}
 	)
 
-	fun create(h: HardwareMap?): Follower {
+	fun create(h: HardwareMap): Follower {
 		return Follower(
 			ThreeWheelLocalizer(h, this.localizerConfig),
 			Mecanum(h, this.driveConfig),
